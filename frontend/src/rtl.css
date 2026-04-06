@@ -1,0 +1,176 @@
+/* ── RTL-specific overrides ──
+   Applied when <html dir="rtl"> is set by LanguageContext.
+   For cases where CSS logical properties aren't sufficient. */
+
+/* Sidebar: flip to right side */
+[dir="rtl"] .sidebar {
+  left: auto;
+  right: 0;
+  border-right: none;
+  border-left: 1px solid #e5e5e5;
+}
+
+/* User menu dropdown: flip position */
+[dir="rtl"] .user-menu {
+  right: auto;
+  left: 0;
+}
+
+/* Notification dropdown: flip position */
+[dir="rtl"] .notif-dropdown {
+  right: auto;
+  left: 0;
+}
+
+/* Settings sidebar: flip border */
+[dir="rtl"] .settings-sidebar {
+  border-right: none;
+  border-left: 1px solid #e5e5e5;
+}
+
+/* Flip directional arrow SVG icons */
+[dir="rtl"] .loc-back svg,
+[dir="rtl"] .loc-back-desktop svg,
+[dir="rtl"] .loc-carousel-prev svg,
+[dir="rtl"] .loc-carousel-next svg,
+[dir="rtl"] .settings-back-btn svg,
+[dir="rtl"] .bf-header-back svg,
+[dir="rtl"] .cc-back svg,
+[dir="rtl"] .bf-rv-back svg,
+[dir="rtl"] .ase-back svg,
+[dir="rtl"] .mapview-mobile-topbar-back svg,
+[dir="rtl"] .search-result-arrow {
+  transform: scaleX(-1);
+}
+
+/* Search icon position */
+[dir="rtl"] .topbar-search-icon {
+  left: auto;
+  right: 12px;
+}
+
+[dir="rtl"] .topbar-search input {
+  padding-left: 12px;
+  padding-right: 38px;
+}
+
+/* Location detail: flip image to left side on desktop */
+[dir="rtl"] .loc {
+  grid-template-columns: 62% 1fr;
+}
+
+[dir="rtl"] .loc-carousel {
+  grid-column: 1;
+}
+
+[dir="rtl"] .loc-body {
+  grid-column: 2;
+}
+
+/* Location carousel prev/next */
+[dir="rtl"] .loc-carousel-prev {
+  left: auto;
+  right: 8px;
+}
+
+[dir="rtl"] .loc-carousel-next {
+  right: auto;
+  left: 8px;
+}
+
+/* App layout adjustments */
+[dir="rtl"] .app-layout {
+  direction: rtl;
+}
+
+/* Ensure bottom nav stays consistent */
+[dir="rtl"] .bottom-nav {
+  direction: rtl;
+}
+
+/* ── BookingFlow: Top nav (back button) ── */
+/* The top nav uses margin-left: 50% + translateX(-50%) to go full-width.
+   In RTL, this pushes the element off-screen. Fix by mirroring. */
+[dir="rtl"] .bf-top-nav {
+  margin-left: auto;
+  margin-right: 50%;
+  transform: translateX(50%);
+}
+
+/* ── BookingFlow: Bottom progress bar — segments are direction-neutral ── */
+
+/* ── BookingFlow: Calendar (DayPicker) ── */
+/* Calendars must always show days in chronological order (Sun → Sat, left → right).
+   RTL reverses flex/grid rows which breaks the day sequence. Force LTR on the entire
+   calendar component while keeping month caption text readable. */
+[dir="rtl"] .bf-day-picker {
+  direction: ltr;
+}
+
+[dir="rtl"] .bf-range-picker {
+  direction: ltr;
+}
+
+/* ── BookingFlow: Date fields (Start → End) ── */
+/* Keep the Start | → | End fields in logical order (Start on left, End on right) */
+[dir="rtl"] .bf-date-card .bf-date-fields {
+  direction: ltr;
+}
+
+/* But allow Hebrew text inside the date labels/values to flow RTL */
+[dir="rtl"] .bf-date-card .bf-date-col {
+  text-align: center;
+}
+
+/* ── BookingFlow: Operating hours grid ── */
+/* Keep day rows in consistent order */
+[dir="rtl"] .bf-oh-row .bf-oh-day {
+  border-radius: 0 6px 6px 0;
+}
+
+[dir="rtl"] .bf-oh-row .bf-oh-time {
+  border-radius: 6px 0 0 6px;
+}
+
+/* ── BookingFlow: Hour chips grid ── */
+/* Keep hour chips in chronological order (9:00, 10:00, 11:00...) */
+[dir="rtl"] .bf-hour-chips {
+  direction: ltr;
+}
+
+[dir="rtl"] .bf-hour-grid {
+  direction: ltr;
+}
+
+/* ── BookingFlow: Availability bar fill direction ── */
+/* The fill bar should always grow from left to right */
+[dir="rtl"] .bf-avail-bar {
+  direction: ltr;
+}
+
+/* ── Admin Orders: Chevron flip for RTL ── */
+[dir="rtl"] .ao-chevron {
+  transform: scaleX(-1);
+}
+
+[dir="rtl"] .ao-chevron.expanded {
+  transform: scaleX(-1) rotate(90deg);
+}
+
+/* ── Admin Notifications: Flip accent border to right in RTL ── */
+[dir="rtl"] .admin-broadcast-preview {
+  border-left: 1px solid #ebebeb;
+  border-right-width: 4px;
+  border-right-style: solid;
+}
+
+[dir="rtl"] .admin-broadcast-modal-preview {
+  border-left: 1px solid #f0f0f0;
+  border-right-width: 4px;
+  border-right-style: solid;
+}
+
+/* ── BookingFlow: Schedule cards ── */
+[dir="rtl"] .sc-container {
+  direction: rtl;
+}
